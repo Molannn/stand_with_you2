@@ -124,18 +124,22 @@
                             <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">大學申請</span>
                         </div>
                         <p class="text-gray-600 text-sm line-clamp-3">我是台大資工系大三學生，擅長程式設計和人工智慧相關領域。曾參與多項專案開發，也有指導高中生程式設計的經驗。歡迎對資工系或程式設計有興趣的同學諮詢！</p>
-                    </div>
                     <div class="mt-6 flex justify-between items-center">
                         <div class="flex items-center text-sm text-gray-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
-                            可預約時段: 5
-                        </div>
-                        <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm transition-colors">
-                            聯繫諮詢
-                        </button>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        可預約時段: 5
                     </div>
+                    <div class="flex space-x-2">
+                        <button class="contact-btn bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+                          聯繫諮詢
+                        </button>
+    <!-- ✅ 新增「試閱文件」按鈕 -->
+                        <button class="preview-btn bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2 rounded-lg text-sm transition-colors">
+      試閱文件
+                        </button>
                 </div>
             </div>
 
@@ -160,7 +164,9 @@
                             </div>
                         </div>
                         <button class="bookmark-btn text-gray-400 hover:text-indigo-600">
-                            <img src="assets/icons/logo.svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                            </svg>
                         </button>
                     </div>
                     <div class="mt-4">
@@ -513,6 +519,30 @@
                 }
             });
 
+            // document
+            <!-- ✅ 文件預覽彈窗 -->
+<div id="preview-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+  <div class="bg-white rounded-xl p-6 max-w-md w-full mx-4">
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="text-xl font-bold text-gray-800">試閱文件</h3>
+      <button id="close-preview" class="text-gray-400 hover:text-gray-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    <div id="preview-content" class="text-sm text-gray-700 space-y-2">
+      <p><strong>備審資料：</strong>大學申請時準備的自傳、讀書計畫與作品集。</p>
+      <p><strong>履歷：</strong>針對科技業與新創公司撰寫的簡歷。</p>
+      <p><strong>面試經驗：</strong>包含面試問題與準備方式，適用資工與心理類領域。</p>
+    </div>
+    <div class="flex justify-end mt-4">
+      <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors" onclick="hidePreviewModal()">關閉</button>
+    </div>
+  </div>
+</div>
+
+
             // 搜尋功能
             const searchInput = document.querySelector('.search-input');
             searchInput.addEventListener('input', function() {
@@ -536,6 +566,36 @@
                 });
             });
         });
+
+<!-- 試閱文件控制 JS -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const previewBtns = document.querySelectorAll('.preview-btn');
+    const previewModal = document.getElementById('preview-modal');
+    const closePreview = document.getElementById('close-preview');
+
+    function showPreviewModal() {
+      previewModal.classList.remove('hidden');
+    }
+
+    function hidePreviewModal() {
+      previewModal.classList.add('hidden');
+    }
+
+    previewBtns.forEach(btn => {
+      btn.addEventListener('click', showPreviewModal);
+    });
+
+    closePreview.addEventListener('click', hidePreviewModal);
+    previewModal.addEventListener('click', function (e) {
+      if (e.target === previewModal) hidePreviewModal();
+    });
+
+    window.hidePreviewModal = hidePreviewModal;
+  });
+</script>
+
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'94116e7424928410',t:'MTc0NzQ2NzI1Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
