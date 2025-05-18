@@ -393,6 +393,28 @@
             </button>
         </div>
     </main>
+            <!-- 試閱文件彈窗 -->
+    <div id="preview-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+      <div class="bg-white rounded-xl p-6 max-w-md w-full mx-4">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-xl font-bold text-gray-800">試閱文件</h3>
+          <button id="close-preview" class="text-gray-400 hover:text-gray-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div id="preview-content" class="text-sm text-gray-700 space-y-2">
+          <p><strong>備審資料：</strong>大學申請時準備的自傳、讀書計畫與作品集。</p>
+          <p><strong>履歷：</strong>針對科技業與新創公司撰寫的簡歷。</p>
+          <p><strong>面試經驗：</strong>包含面試問題與準備方式，適用資工與心理類領域。</p>
+        </div>
+        <div class="flex justify-end mt-4">
+          <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors" onclick="hidePreviewModal()">關閉</button>
+        </div>
+      </div>
+    </div>
+
 
     <!-- 聯繫諮詢彈窗 -->
     <div id="contact-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
@@ -518,30 +540,6 @@
                     hideModal();
                 }
             });
-
-            // document
-            <!-- ✅ 文件預覽彈窗 -->
-<div id="preview-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-  <div class="bg-white rounded-xl p-6 max-w-md w-full mx-4">
-    <div class="flex justify-between items-center mb-4">
-      <h3 class="text-xl font-bold text-gray-800">試閱文件</h3>
-      <button id="close-preview" class="text-gray-400 hover:text-gray-600">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
-    </div>
-    <div id="preview-content" class="text-sm text-gray-700 space-y-2">
-      <p><strong>備審資料：</strong>大學申請時準備的自傳、讀書計畫與作品集。</p>
-      <p><strong>履歷：</strong>針對科技業與新創公司撰寫的簡歷。</p>
-      <p><strong>面試經驗：</strong>包含面試問題與準備方式，適用資工與心理類領域。</p>
-    </div>
-    <div class="flex justify-end mt-4">
-      <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors" onclick="hidePreviewModal()">關閉</button>
-    </div>
-  </div>
-</div>
-
 
             // 搜尋功能
             const searchInput = document.querySelector('.search-input');
